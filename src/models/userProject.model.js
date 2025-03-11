@@ -2,6 +2,7 @@ const { DataTypes } = require('sequelize');
 const sequelize = require('../config/db');
 
 const UserProject = sequelize.define('usuarios_proyectos', {
+    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     usuario_id: { 
         type: DataTypes.INTEGER, 
         allowNull: false, 
@@ -14,7 +15,7 @@ const UserProject = sequelize.define('usuarios_proyectos', {
     }
 }, {
     timestamps: false,
-    tableName: 'roles_permisos'
+    tableName: 'usuarios_proyectos'
 });
 
 module.exports = usuarios_proyectos;
