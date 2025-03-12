@@ -15,13 +15,13 @@ const Project = sequelize.define('proyectos', {
         allowNull: false,
         references: { model: 'User', key: 'id' }
         }
-    }, {
+},{
     timestamps: false,
     tableName: 'proyectos',
+    hooks: {
         afterCreate: (project, options) => {
             if (project.fecha_creacion) {
                 project.fecha_creacion.setHours(project.fecha_creacion.getHours() - 5);
-                
             }
         }
     }
