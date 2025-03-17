@@ -2,6 +2,7 @@ const dotenv = require('dotenv');
 
 dotenv.config();
 
+// Exportamos las variables de entorno
 module.exports = {
     PORT :process.env.PORT,
     DB_NAME: process.env.DB_NAME,

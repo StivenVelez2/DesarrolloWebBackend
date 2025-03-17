@@ -3,7 +3,8 @@ const dotenv = require('dotenv');
 
 dotenv.config();
 
-const sequelize = new Sequelize (process.env.DB_NAME, process.env.DB_PASSWORD, {
+//Creamos la conexión a la base de datos
+const sequelize = new Sequelize (process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
     host: process.env.DB_HOST,
     dialect: 'postgres',
     port: process.env.DB_PORT,
@@ -11,4 +12,4 @@ const sequelize = new Sequelize (process.env.DB_NAME, process.env.DB_PASSWORD, {
     timezone: '-05:00'
 });
 
-module.exports = sequelize;
+module.exports = sequelize;//Exportamos la conexión a la base de datos para poder usarla en otros archivos

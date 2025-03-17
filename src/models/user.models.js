@@ -1,6 +1,8 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/db');
 
+
+// Definir el modelo de la tabla usuarios
 const User = sequelize.define('usuarios', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     nombre: { type: DataTypes.STRING, allowNull: false },

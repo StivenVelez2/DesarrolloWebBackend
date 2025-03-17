@@ -1,6 +1,7 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/db');
 
+// Definir el modelo de la tabla de proyectos
 const Project = sequelize.define('proyectos', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     nombre: { type: DataTypes.STRING, allowNull: false },
@@ -19,7 +20,7 @@ const Project = sequelize.define('proyectos', {
     timestamps: false,
     tableName: 'proyectos',
     hooks: {
-        afterCreate: (project, options) => {
+        afterCreate: (project, options) => {//restar 5 horas a la fecha de creación
             if (project.fecha_creacion) {
                 project.fecha_creacion.setHours(project.fecha_creacion.getHours() - 5);
             }

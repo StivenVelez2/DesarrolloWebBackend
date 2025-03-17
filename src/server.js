@@ -7,6 +7,7 @@ dotenv.config();
 
 const PORT = process.env.PORT || 3000;
 
+// Conectarse a la base de datos
 sequelize.authenticate()
     .then(() => {
         console.log('Conectado a PostgreSQL con Sequelize');
