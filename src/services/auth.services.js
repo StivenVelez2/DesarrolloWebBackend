@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');//importar libreria jsonweb token para gener
 const bcrypt = require('bcrypt');//importar libreria bcrypt para encriptar contraseñas
 const dotenv = require('dotenv');
 dotenv.config();//importar libreria dotenv para variables de entorno
-const User = require('../models/user.models');//importar los modelos de usuario y roles
+const User = require('../models/user.model');//importar los modelos de usuario y roles
 const RolePermissions = require('../models/role_permissions.models');//importar los modelos de usuario y roles
 
 dotenv.config();

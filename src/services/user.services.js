@@ -1,4 +1,4 @@
-const User = require('../models/user.models');//importar el modelo de usuario
+const User = require('../models/user.model');//importar el modelo de usuario
 const bcrypt = require('bcrypt');
 
 //Exporta la funcion de crear usuario y verifica que el usuario no exista, encripta la contraseña y muestra el mensaje

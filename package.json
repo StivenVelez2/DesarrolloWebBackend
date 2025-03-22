@@ -1,4 +1,14 @@
 {
+  "name": "proyecto-base-de-datos",
+  "version": "1.0.0",
+  "description": "Proyecto de base de datos",
+  "main": "./src/sever.js",
+  "scripts": {
+    "dev": "nodemon -e js ./src/server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.1",
     "cors": "^2.8.5",

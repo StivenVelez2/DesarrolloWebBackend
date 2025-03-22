@@ -19,4 +19,5 @@ const UserProject = sequelize.define('usuarios_proyectos', {
     tableName: 'usuarios_proyectos'
 });
 
-module.exports = usuarios_proyectos;
+module.exports = UserProject;
+

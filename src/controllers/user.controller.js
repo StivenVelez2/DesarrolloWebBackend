@@ -1,4 +1,4 @@
-const User = require('../models/user.models');
+const User = require('../models/user.model');
 const userService = require('../services/user.services');
 
 //funcion para crear un usuario
