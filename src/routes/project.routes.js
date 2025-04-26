@@ -5,15 +5,16 @@ const {authenticateToken, checkRole} = require('../middleware/auth.middleware');
 const ROLES = require('../utils/constants');
 const errorHandler = require('../middleware/error.middleware');
 
+// Define las rutas para los proyectos
+router.post('/project/create', authenticateToken,checkRole([ROLES.ADMIN]), projectController.createProject);
+router.put('/project/update/:id', authenticateToken,checkRole([ROLES.ADMIN]), projectController.updateProject);
+router.delete('/project/delete/:id', authenticateToken,checkRole([ROLES.ADMIN]), projectController.deleteProject);
+router.get('/project/', authenticateToken,checkRole([ROLES.ADMIN, ROLES.USER]), projectController.getAllProjects);
+router.get('/project/:id', authenticateToken,checkRole([ROLES.ADMIN, ROLES.USER]), projectController.getProjectById);
 
-router.post('/projects/create', authenticateToken,checkRole([ROLES.ADMIN]), projectController.createProject);
-router.put('/projects/update', authenticateToken,checkRole([ROLES.ADMIN]), projectController.updateProject);
-router.delete('/projects/delete/id', authenticateToken,checkRole([ROLES.ADMIN]), projectController.deleteProject);
-router.get('/projects', authenticateToken,checkRole([ROLES.ADMIN, ROLES.USER]), projectController.getAllProjects);
-router.get('/projects/:id', authenticateToken,checkRole([ROLES.ADMIN, ROLES.USER]), projectController.getProjectById);
-
-router.post('/projects/associate', authenticateToken,checkRole([ROLES.ADMIN]), projectController.assignUserToProjects);
-router.delete('/projects/disassociate', authenticateToken,checkRole([ROLES.ADMIN]), projectController.removeUserFromProjects);
+// Define las rutas para la asignación de usuarios a proyectos
+router.post('/project/associate', authenticateToken,checkRole([ROLES.ADMIN]), projectController.assignUserToProjects);
+router.delete('/project/disassociate', authenticateToken,checkRole([ROLES.ADMIN]), projectController.removeUserFromProjects);
 
 router.use(errorHandler);
 

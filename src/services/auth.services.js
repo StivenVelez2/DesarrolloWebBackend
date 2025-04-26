@@ -1,13 +1,11 @@
 const jwt = require('jsonwebtoken');//importar libreria jsonweb token para generar token
 const bcrypt = require('bcrypt');//importar libreria bcrypt para encriptar contraseñas
 const dotenv = require('dotenv');
-dotenv.config();//importar libreria dotenv para variables de entorno
 const User = require('../models/user.model');//importar los modelos de usuario y roles
 const RolePermissions = require('../models/role_permissions.models');//importar los modelos de usuario y roles
 
 dotenv.config();
-
-const SECRET_KEY = process.env.SECRET_KEY; //se crea una variable de entorno para la clave secreta
+const SECRET_KEY = process.env.JWT_SECRET;//definir la variable de entorno para el secreto del token
 
 exports.loginUser = async (email, password) => {//funcion para logearse
     try {
@@ -23,7 +21,7 @@ exports.loginUser = async (email, password) => {//funcion para logearse
 
         const rolePermissions = await RolePermissions.findAll({//busca los roles del usuario
             where: { rol_id: user.rol_id },
-            atributes: ['permiso_id']
+            attributes: ['permiso_id']
         });
 
         const permiso = rolePermissions.map(rp => rp.permiso_id);//mapea los permisos del usuario
@@ -37,6 +35,7 @@ exports.loginUser = async (email, password) => {//funcion para logearse
         return token;
     }
     catch (error) {
-        throw new Error(error.message || 'Error al iniciara sesion ');//si hay un error lo muestra
+        throw new Error(error.message || 'Error al iniciar sesion ');//si hay un error lo muestra
     }
 };
+

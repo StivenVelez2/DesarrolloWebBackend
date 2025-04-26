@@ -1,16 +1,26 @@
 const Project = require('../models/project.model');
 const projectService = require('../services/project.service');
 
+// controller
 exports.createProject = async (req, res) => {
     try {
         const { nombre, descripcion, fecha_inicio, fecha_fin, administrador_id } = req.body;
-        const newProject = await projectService.createProject(nombre, descripcion, fecha_inicio, fecha_fin, administrador_id);
+
+        const data = {
+            nombre,
+            descripcion,
+            fecha_inicio,
+            fecha_fin,
+            administrador_id
+        };
+
+        const newProject = await projectService.createProject(data);
         res.status(201).json({ message: 'Proyecto creado exitosamente', project: newProject });
-    }
-    catch (err) {
+    } catch (err) {
         res.status(500).json({ message: err.message });
     }
 };
+
 
 exports.getAllProjects = async (req, res) => {
     try {
@@ -34,13 +44,23 @@ exports.getProjectById = async (req, res) => {
 exports.updateProject = async (req, res) => {
     const { id } = req.params;
     const { nombre, descripcion, fecha_inicio, fecha_fin, administrador_id } = req.body;
+
+    const data = {
+        nombre,
+        descripcion,
+        fecha_inicio,
+        fecha_fin,
+        administrador_id
+    };
+
     try {
-        const project = await projectService.updateProject(id, nombre, descripcion, fecha_inicio, fecha_fin, administrador_id);
-        res.status(200).json({ message: 'Proyecto actualizado con exito', project });
+        const project = await projectService.updateProject(id, data);
+        res.status(200).json({ message: 'Proyecto actualizado con éxito', project });
     } catch (err) {
         res.status(500).json({ message: err.message });
     }
 };
+
 
 exports.deleteProject = async (req, res) => {
     const { id } = req.params;
@@ -55,14 +75,21 @@ exports.deleteProject = async (req, res) => {
 };
 
 exports.assignUserToProjects = async (req, res) => {
-    const { project_id, user_id } = req.body;
+    let { project_id, user_id } = req.body;
+
+    // Asegura que user_id sea un array
+    if (!Array.isArray(user_id)) {
+        user_id = [user_id];
+    }
+
     try {
         const result = await projectService.assignUserToProjects(project_id, user_id);
         res.status(200).json(result);
     } catch (err) {
         res.status(500).json({ message: err.message });
     }
-}
+};
+
 
 exports.removeUserFromProjects = async (req, res) => {
     const { project_id, user_id } = req.body;

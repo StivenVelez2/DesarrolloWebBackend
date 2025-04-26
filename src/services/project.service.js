@@ -1,6 +1,7 @@
 const Project = require('../models/project.model');
 const User = require('../models/user.model'); // Asegúrate de que este modelo exista
 
+// Esta función crea un nuevo proyecto
 exports.createProject = async (data) => {
     try {
         const project = await Project.create(data);
@@ -10,6 +11,7 @@ exports.createProject = async (data) => {
     }
 };
 
+// Esta función obtiene todos los proyectos
 exports.getAllProjects = async () => {
     try {
         const projects = await Project.findAll({
@@ -34,6 +36,7 @@ exports.getAllProjects = async () => {
     }
 };
 
+// Esta función obtiene un proyecto por su ID
 exports.getProjectById = async (id) => {
     try {
         const project = await Project.findByPk(id, {
@@ -62,6 +65,7 @@ exports.getProjectById = async (id) => {
     }
 };
 
+// Esta función actualiza un proyecto por su ID
 exports.updateProject = async (id, data) => {
     try {
         const project = await Project.findByPk(id);
@@ -76,6 +80,7 @@ exports.updateProject = async (id, data) => {
     }
 };
 
+// Esta función elimina un proyecto por su ID
 exports.deleteProject = async (id) => {
     try {
         const project = await Project.findByPk(id);
@@ -90,7 +95,8 @@ exports.deleteProject = async (id) => {
     }
 };
 
-exports.assignUsersToProjects = async (projectId, userIds) => {
+// Esta función asigna usuarios a un proyecto específico
+exports.assignUserToProjects = async (projectId, userIds) => {
     try {
         const project = await Project.findByPk(projectId);
         if (!project) {
@@ -118,6 +124,7 @@ exports.assignUsersToProjects = async (projectId, userIds) => {
     }
 };
 
+// Esta función elimina un usuario de un proyecto específico
 exports.removeUserFromProjects = async (projectId, userId) => {
     try {
         const project = await Project.findByPk(projectId);

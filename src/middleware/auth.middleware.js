@@ -2,12 +2,16 @@ const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv');
 dotenv.config();
 
-const SECRET_KEY = process.env.SECRET_KEY;
+// Middleware para autenticar el token JWT
+const SECRET_KEY = process.env.JWT_SECRET;
 
+// Middleware para verificar el token JWT
 const authenticateToken = (req, res, next) => {
-    const token = req.header['authorization']?.split(' ')[1];
+    const token = req.headers['authorization']?.split(' ')[1];
+    console.log('token recibido:' ,token);
 
     if (!token) {
+        console.log('no se proporciono el token');
         return res.status(401).json({ message: 'Acceso denegado, no se puede proporcionar un token' });
     }
 
@@ -21,6 +25,7 @@ const authenticateToken = (req, res, next) => {
     });
 };
 
+// Middleware para verificar el rol del usuario
 const checkRole = (role) => {
     return (req, res, next) => {
         const { rol_id} = req.user;
@@ -33,4 +38,5 @@ const checkRole = (role) => {
     };
 };
 
+// Exportar los middleware
 module.exports = { authenticateToken, checkRole };

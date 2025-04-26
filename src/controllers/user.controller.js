@@ -27,13 +27,16 @@ exports.getAllUsersByAdministradorId = async (req,res) => {
 
 //funcion para obtener todos los usuarios por rol
 exports.getAllUsersByRolId = async (req, res) => {
-    try{
-        const users = await userService.getAllUsersByRolId(req.params.id);//se obtienen los usuarios
-        res.status(200).json({message: 'Usuarios consultados con exito', users})//se envian los usuarios
-    }catch (error){
-        res.status(500).json({message: 'Error al obtener los usuarios', error});
+    try {
+        const { id } = req.params;
+        const users = await userService.getAllUsersByRolId(id); // este id debe existir
+        res.status(200).json({ message: 'Usuarios consultados con éxito', users });
+    } catch (error) {
+        console.error('Error en getAllUsersByRolId:', error);
+        res.status(500).json({ message: 'Error al obtener los usuarios', error });
     }
 };
+
 
 //funcion para actualizar un usuario
 exports.updateUser = async(req,res) => {//funcion para actualizar un usuario
