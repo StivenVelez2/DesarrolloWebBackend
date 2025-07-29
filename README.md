@@ -17,7 +17,7 @@ Proyecto backend desarrollado en Node.js, usando Express.js, con enfoque en la c
 1. Clona el repositorio:
 
 ```bash
-git clone https://github.com/tu-usuario/DesarrolloWebBackend.git
+git clone https://github.com/StivenVelez2/DesarrolloWebBackend.git
 cd DesarrolloWebBackend
 ```
 
